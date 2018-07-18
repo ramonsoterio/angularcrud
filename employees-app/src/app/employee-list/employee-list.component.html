@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div *ngIf="currentEmployee">
+        <app-employee-detail [employee]="currentEmployee"></app-employee-detail>
+      </div>
+      <h4 style="padding-top: 30px">Lista de Empregados: {{ employeesDisplay.length }} registros</h4>
+        <div class="table-responsive table-bordered">
+          <table class="table table-striped">
+            <thead class="text-center">
+              <th>Nome</th>
+              <th>Cargo</th>
+              <th class="th-number">Salário</th>
+              <th class="th-btn">Ações</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employeesDisplay">
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.position }}</td>
+                <td class="text-center">{{ employee.salary }}</td>
+                <td class="text-center">
+                  <a href="#" class="btn btn-info" (click)="getEmployee(employee)"><span class="fa fa-pencil"></span></a>
+                  <a href="#" class="btn btn-danger" (click)= "remove(employee)"><span class="fa fa-trash"></span></a>
+                </td>
+              </tr>  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

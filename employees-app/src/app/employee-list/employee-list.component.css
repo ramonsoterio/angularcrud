@@ -1,0 +1,15 @@
+.table td, .table th {
+	vertical-align: middle;
+}
+
+.th-btn {
+	width: 15%;
+}
+
+.th-number {
+	width: 15%;
+}
+
+.btn {
+	border-radius: 1.25rem;
+}

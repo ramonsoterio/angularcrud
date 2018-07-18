@@ -1,0 +1,17 @@
+    <h4>{{ titleAction }}</h4>
+    <form>
+      <div class="form-control">
+        <label for="id">Nome</label>
+        <input type="text" style="width: 40%" class="form-control" id="id" [(ngModel)]="employee.name" name="name">
+
+        <label for="position">Cargo</label>
+        <input type="text" style="width: 25%" class="form-control" id="position" [(ngModel)]="employee.position" name="position">
+
+        <div class="form-group">
+          <label for="salary">Salário</label>
+          <input type="text" style="width: 12%" class="form-control" id="salary" [(ngModel)]="employee.salary" name="salary">
+        </div>
+      <button (click)="addEmployee()" class="btn btn-info">Criar</button>
+      <button (click)="updateEmployee()" class="btn btn-info">Atualizar</button>
+      </div>
+    </form>
