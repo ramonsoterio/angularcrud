@@ -2,9 +2,16 @@
   <div class="row">
     <div class="col-md-12">
       <div *ngIf="currentEmployee">
-        <app-employee-detail [employee]="currentEmployee"></app-employee-detail>
+        <app-employee-detail [employee]="currentEmployee"
+                             (employeeAdd)="this.updateEmployeeList($event)">
+        </app-employee-detail>
       </div>
-      <h4 style="padding-top: 30px">Lista de Empregados: {{ employeesDisplay.length }} registros</h4>
+      <h4 style="padding-top: 30px">
+        Lista de Empregados: 
+        <div *ngIf="employeesDisplay != null">
+          {{ employeesDisplay.length }} registros
+        </div>
+      </h4>
         <div class="table-responsive table-bordered">
           <table class="table table-striped">
             <thead class="text-center">

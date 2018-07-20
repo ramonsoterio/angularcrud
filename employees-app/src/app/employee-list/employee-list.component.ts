@@ -54,6 +54,10 @@ export class EmployeeListComponent implements OnInit {
       )
   }
 
+  updateEmployeeList(employee: any) {
+    this.employeesDisplay.push(employee);
+  }
+
   ngOnInit() {
     this.getEmployees();
   }
