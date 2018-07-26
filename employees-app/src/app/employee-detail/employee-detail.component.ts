@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, ViewChild, Output } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { Employee } from '../Employee';
 import { EmployeeService } from '../employee.service';
-import { EventEmitter } from '../../../node_modules/protractor';
 
 @Component({
   selector: 'app-employee-detail',
@@ -10,22 +12,34 @@ import { EventEmitter } from '../../../node_modules/protractor';
 })
 export class EmployeeDetailComponent implements OnInit {
 
-  titleAction: string = 'Editar empregado';
-  isEditing: boolean
+  titleAction: string = 'Empregado';
 
-  @Input() employee: Employee;
+  employee: Employee;
+  employee$: Observable<Employee>;
 
-  constructor(private employeeService : EmployeeService) { }
+  private isEditing: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private employeeService: EmployeeService
+  ) {}
 
   ngOnInit() {
-    this.isEditing = true;
+    let id = this.route.snapshot.params['id'];
+    if (id > 0) {
+      this.getEmployee(id);
+      this.isEditing = true;
+    } else {
+      this.employee = new Employee();
+    }
   }
 
-  addEmployee() {
+  add() {
     this.employeeService.addEmployee(this.employee)
       .subscribe(
         result => {
-          console.log('Sucesso: ' + result)
+          console.log('Sucesso');
         },
         error => {
           console.log(error);
@@ -33,15 +47,40 @@ export class EmployeeDetailComponent implements OnInit {
       )
   }
 
-  updateEmployee() {
+  update() {
     this.employeeService.updateEmployee(this.employee)
+    .subscribe(
+      result => {
+        console.log('Sucesso: ' + result);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  updateEmployee() {
+    if (this.isEditing) {
+      this.update();
+    } else {
+      this.add();
+    }
+  }
+
+  getEmployee(id: any) {
+    this.employeeService.getEmployee(id)
       .subscribe(
         result => {
-          console.log('Sucesso: ' + result);
+          this.employee = result;
+          console.log("Empregado identificado com sucesso.");
         },
         error => {
-          console.log(error);
+          console.log('Erro ao buscar os dados do empregado.');
         }
       )
+  }
+
+  goToEmployees() {
+    this.router.navigate(['/employees']);
   }
 }

@@ -1,16 +1,15 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div *ngIf="currentEmployee">
-        <app-employee-detail [employee]="currentEmployee"
-                             (employeeAdd)="this.updateEmployeeList($event)">
-        </app-employee-detail>
-      </div>
       <h4 style="padding-top: 30px">
-        Lista de Empregados: 
-        <div *ngIf="employeesDisplay != null">
-          {{ employeesDisplay.length }} registros
+        <div *ngIf="employeesDisplay != null && employeesDisplay.length > 0">
+          Registros: {{ employeesDisplay.length }}
         </div>
+        <div *ngIf="employeesDisplay == null || (employeesDisplay != null && employeesDisplay.length == 0)">
+          Nenhum registro incluído.         
+        </div>
+        <!--<a [routerLink]="['/hero', hero.id]" -->
+        <a routerLink="/employee" routerLinkActive="active">Incluir</a>
       </h4>
         <div class="table-responsive table-bordered">
           <table class="table table-striped">
@@ -26,7 +25,7 @@
                 <td>{{ employee.position }}</td>
                 <td class="text-center">{{ employee.salary }}</td>
                 <td class="text-center">
-                  <a href="#" class="btn btn-info" (click)="getEmployee(employee)"><span class="fa fa-pencil"></span></a>
+                  <a href="#" class="btn btn-info" [routerLink]="['/employee', employee.id]"><span class="fa fa-pencil"></span></a>
                   <a href="#" class="btn btn-danger" (click)= "remove(employee)"><span class="fa fa-trash"></span></a>
                 </td>
               </tr>  

@@ -41,6 +41,14 @@ public class Employee implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
 
     public String getPosition() {
         return position;
@@ -48,14 +56,6 @@ public class Employee implements Serializable {
 
     public void setPosition(String salary) {
         this.position = salary;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
     }
     
     public void ToString() {

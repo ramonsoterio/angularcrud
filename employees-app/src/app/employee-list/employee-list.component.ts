@@ -12,16 +12,16 @@ import { Employee } from '../Employee';
 })
 export class EmployeeListComponent implements OnInit {
   
-  employees: Observable<Employee[]>;
+  employees$: Observable<Employee[]>;
   employeesDisplay: Employee[];
   currentEmployee: Employee;
   
   constructor(private employeeService: EmployeeService) { }
 
   getEmployees(): void {
-    this.employees = this.employeeService.getEmployees();
+    this.employees$ = this.employeeService.getEmployees();
 
-    this.employees.subscribe(
+    this.employees$.subscribe(
       (e : Employee[]) => {
         this.employeesDisplay = e;
       }

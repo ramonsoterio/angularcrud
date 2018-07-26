@@ -1,6 +1,6 @@
     <h4>{{ titleAction }}</h4>
     <form>
-      <div class="form-control">
+      <div *ngIf="employee != null" class="form-control">
         <label for="id">Nome</label>
         <input type="text" style="width: 40%" class="form-control" id="id" [(ngModel)]="employee.name" name="name">
 
@@ -11,7 +11,7 @@
           <label for="salary">Salário</label>
           <input type="text" style="width: 12%" class="form-control" id="salary" [(ngModel)]="employee.salary" name="salary">
         </div>
-      <button (click)="addEmployee()" class="btn btn-info">Criar</button>
-      <button (click)="updateEmployee()" class="btn btn-info">Atualizar</button>
+      <button (click)="updateEmployee()" class="btn btn-info">Salvar</button>
+      <button (click)="goToEmployees()" class="btn btn-cancel">Voltar</button>
       </div>
     </form>
